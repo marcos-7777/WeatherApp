@@ -18,6 +18,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
@@ -61,6 +63,44 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+var informacaoSeteDias = listOf(
+    temperaturaDia(
+        temperatura = 17,
+        estado = "Tempestade",
+        resource = R.drawable.storm
+    ),
+    temperaturaDia(
+        temperatura = 15,
+        estado = "Céu limpo",
+        resource = R.drawable.sun
+    ),
+    temperaturaDia(
+        temperatura = 7,
+        estado = "Nublado",
+        resource = R.drawable.cloudy
+    ),
+    temperaturaDia(
+        temperatura = 8,
+        estado = "Tempestade",
+        resource = R.drawable.rainy
+    ),
+    temperaturaDia(
+        temperatura = 0,
+        estado = "Nevasca",
+        resource = R.drawable.snowy
+    ),
+    temperaturaDia(
+        temperatura = 14,
+        estado = "Tempestade",
+        resource = R.drawable.storm
+    ),
+    temperaturaDia(
+        temperatura = 25,
+        estado = "Tempestade",
+        resource = R.drawable.sun
+    ),
+)
+
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
@@ -92,6 +132,34 @@ fun page(): Unit {
     }
 
 }
+
+
+
+@Preview(showBackground = true, widthDp = 380, heightDp = 350)
+@Composable
+fun proximosSeteDias() {
+    LazyRow() {
+        items(informacaoSeteDias) {
+            proximoDia(temperaturaDia = it)
+        }
+    }
+}
+
+
+@Composable
+fun proximoDia(temperaturaDia: temperaturaDia): Unit {
+    Column (
+        modifier = Modifier
+            .width(100.dp)
+            .padding(15.dp, 15.dp, 15.dp, 15.dp)
+    ){
+        Image(painter = painterResource(id = temperaturaDia.resource),
+            contentDescription = temperaturaDia.estado)
+        Text(text = temperaturaDia.temperatura.toString())
+        Text(text = temperaturaDia.estado)
+    }
+}
+
 
 @Preview(showBackground = true, widthDp = 380, heightDp = 350)
 @Composable
