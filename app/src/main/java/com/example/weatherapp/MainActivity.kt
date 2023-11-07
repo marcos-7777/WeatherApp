@@ -80,9 +80,11 @@ fun GreetingPreview() {
 @Preview(showBackground = true, widthDp = 380, heightDp = 800)
 @Composable
 fun page(): Unit {
-    Column(modifier = Modifier
-        .fillMaxWidth()
-        .padding(12.dp)) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(12.dp)
+    ) {
         Cabecalho()
         NomeDataLocal("Marcos")
         ImagemCentral()
@@ -94,35 +96,53 @@ fun page(): Unit {
 @Preview(showBackground = true, widthDp = 380, heightDp = 350)
 @Composable
 fun ImagemCentral(): Unit {
-    Box (modifier = Modifier
-        .height(300.dp)
-        .background(Color.Cyan)
-        .fillMaxWidth()
+    Box(
+        modifier = Modifier
+            .height(300.dp)
+            .background(Color.Transparent)
+            .fillMaxWidth(),
+        contentAlignment = Alignment.Center
     ) {
-        Column {
+        Box {
             Box(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(15.dp),
-                contentAlignment = Alignment.TopCenter
+                    .clip(CircleShape)
+                    .background(Color.White)
+                    .size(280.dp)
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.storm),
-                    contentDescription = "Storm")
-            }
-            Row (verticalAlignment = Alignment.Bottom,
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center){
-                Text(text = "16ºC",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = TextUnit(55f, TextUnitType.Sp),
-                    color = MaterialTheme.colorScheme.secondary)
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(15.dp),
+                    contentAlignment = Alignment.TopCenter
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.storm),
+                        contentDescription = "Storm"
+                    )
+                }
+                Row(
+                    verticalAlignment = Alignment.Bottom,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(0.dp, 160.dp, 0.dp, 0.dp),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = "16ºC",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = TextUnit(55f, TextUnitType.Sp),
+                        color = MaterialTheme.colorScheme.secondary
+                    )
 
-                Text(text = "Tempestade",
-                    fontWeight = FontWeight.Light,
-                    fontSize = TextUnit(15f, TextUnitType.Sp),
-                    color = MaterialTheme.colorScheme.secondary)
+                    Text(
+                        text = "Tempestade",
+                        fontWeight = FontWeight.Light,
+                        fontSize = TextUnit(12f, TextUnitType.Sp),
+                        color = MaterialTheme.colorScheme.secondary
+                    )
 
+                }
             }
         }
     }
@@ -157,44 +177,48 @@ fun Cabecalho(): Unit {
             modifier = Modifier
                 .clip(CircleShape)
                 .size(35.dp)
-            ) {
+        ) {
 
-                Image(
-                    painter = painterResource(id = R.drawable.foto),
-                    contentDescription = "Foto"
-                )
-            }
-
+            Image(
+                painter = painterResource(id = R.drawable.foto),
+                contentDescription = "Foto"
+            )
         }
 
     }
+
+}
 
 
 @Preview(showBackground = true, widthDp = 380)
 @Composable
 fun NomeDataLocal(name: String = "Marcos"): Unit {
-    Column (modifier = Modifier.fillMaxWidth()){
-        Row (modifier = Modifier.fillMaxWidth())
+    Column(modifier = Modifier.fillMaxWidth()) {
+        Row(modifier = Modifier.fillMaxWidth())
         {
-            Text(text = "Olá",
+            Text(
+                text = "Olá",
                 modifier = Modifier.padding(end = 2.dp),
                 fontSize = TextUnit(25f, TextUnitType.Sp),
                 color = MaterialTheme.colorScheme.primary
-                )
+            )
 
-            Text(text = "$name",
+            Text(
+                text = "$name",
                 fontWeight = FontWeight.Bold,
                 fontSize = TextUnit(25f, TextUnitType.Sp),
                 color = MaterialTheme.colorScheme.primary
             )
         }
-        Text(text = formatData(Calendar.getInstance().time),
+        Text(
+            text = formatData(Calendar.getInstance().time),
             fontWeight = FontWeight.Light,
             fontSize = TextUnit(17f, TextUnitType.Sp),
             color = MaterialTheme.colorScheme.secondary
         )
 
-        Text(text = "Vila Franca de Xira",
+        Text(
+            text = "Vila Franca de Xira",
             fontWeight = FontWeight.Light,
             fontSize = TextUnit(17f, TextUnitType.Sp),
             color = MaterialTheme.colorScheme.secondary
