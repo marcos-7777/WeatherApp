@@ -56,7 +56,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    page()
                 }
             }
         }
@@ -128,6 +128,7 @@ fun page(): Unit {
         Cabecalho()
         NomeDataLocal("Marcos")
         ImagemCentral()
+        proximosSeteDias()
 
     }
 
